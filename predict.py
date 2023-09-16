@@ -39,7 +39,7 @@ def main():
     model = resnet34(num_classes=9).to(device)
 
     # load model weights
-    weights_path = "/workspace/weights/resNet34.pth"
+    weights_path = "/workspace/weight/resNet34.pth"
     assert os.path.exists(weights_path), "file: '{}' dose not exist.".format(weights_path)
     model.load_state_dict(torch.load(weights_path, map_location=device))
 
@@ -53,12 +53,13 @@ def main():
 
     print_res = "class: {}   prob: {:.3}".format(class_indict[str(predict_cla)],
                                                  predict[predict_cla].numpy())
+    print(print_res)
     plt.title(print_res)
-    for i in range(len(predict)):
-        print("class: {:10}   prob: {:.3}".format(class_indict[str(i)],
-                                                  predict[i].numpy()))
+    # for i in range(len(predict)):
+    #     print("class: {:10}   prob: {:.3}".format(class_indict[str(i)],
+    #                                               predict[i].numpy()))
     plt.savefig("result.jpg")
-    plt.show()
+    # plt.show()
 
 
 if __name__ == '__main__':
